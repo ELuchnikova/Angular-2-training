@@ -1,0 +1,46 @@
+{
+  "name": "weather-app",
+  "version": "0.1.0",
+  "main": "app.ts",
+  "scripts": {
+    "watch": "webpack --watch",
+    "start": "tsc && webpack-dev-server" //localhost:3030
+  },
+  "author": "Luchnikova",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-loader": "^6.2.8",
+    "codelyzer": "^2.0.0-beta.1",
+    "css-loader": "^0.26.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "json-loader": "^0.5.4",
+    "raw-loader": "^0.5.1",
+    "style-loader": "^0.13.1",
+    "ts-loader": "^1.2.2",
+    "tslint": "^4.0.2",
+    "tslint-loader": "^3.2.0",
+    "webpack": "^1.13.3",
+    "webpack-split-by-path": "0.1.0-beta.1"
+  },
+  "dependencies": {
+    "@types/core-js": "^0.9.34",
+    "@types/googlemaps": "^3.25.36",
+    "@types/whatwg-fetch": "0.0.32",
+    "@types/whatwg-streams": "0.0.1",
+    "typescript": "^2.0.10",
+    "@angular/common": "~2.2.0",
+    "@angular/compiler": "~2.2.0",
+    "@angular/core": "~2.2.0",
+    "@angular/forms": "~2.2.0",
+    "@angular/http": "~2.2.0",
+    "@angular/platform-browser": "~2.2.0",
+    "@angular/platform-browser-dynamic": "~2.2.0",
+    "@angular/router": "~3.2.0",
+    "angular-in-memory-web-api": "~0.1.15",
+    "systemjs": "0.19.40",
+    "core-js": "^2.4.1",
+    "reflect-metadata": "^0.1.8",
+    "rxjs": "5.0.0-beta.12",
+    "zone.js": "^0.6.26"
+  }
+}
