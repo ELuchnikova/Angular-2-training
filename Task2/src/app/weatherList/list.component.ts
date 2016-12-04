@@ -1,13 +1,13 @@
-import { Component, Input, Output, OnChanges, EventEmitter } from '@angular/core';
+import { Component, Input, Output, OnInit, OnChanges, EventEmitter } from '@angular/core';
 import { IDot, IWeatherItem, IWeatherResponse } from './../../interfaces';
 import { WeatherListService } from './weather';
 
 @Component({
     selector: 'weather-list',
-    templateUrl: './src/app/weatherList/list.html',
-    styleUrls: ['./src/app/weatherList/list.css']
+    templateUrl: './list.html',
+    styleUrls: ['./list.css']
 })
-export class ListComponent implements OnChanges {
+export class ListComponent implements OnInit, OnChanges {
     @Input() location: IDot;
     @Output() gotData = new EventEmitter();
 
@@ -19,7 +19,7 @@ export class ListComponent implements OnChanges {
     private currentPage: number = 1;
     private weatherService: WeatherListService;
 
-    constructor() {
+    public ngOnInit() {
         this.weatherService = new WeatherListService();
     }
 

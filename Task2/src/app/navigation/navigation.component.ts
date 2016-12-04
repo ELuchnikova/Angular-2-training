@@ -8,6 +8,6 @@ import { Component } from '@angular/core';
                         Weather in nearest places
                     </a>
                 </nav>`,
-    styleUrls: ['./src/app/navigation/navigation.css']
+    styleUrls: ['./navigation.css']
 })
 export class NavigationComponent {}

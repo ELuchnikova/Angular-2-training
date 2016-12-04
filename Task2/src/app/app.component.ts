@@ -1,8 +1,10 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+/// <reference path="../../node_modules/@types/node/index.d.ts" />
+
+import './../assets/styles/app-styles.css';
+
+import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
 import { IDot } from './../interfaces';
 import { Location } from './map/geolocation';
-
-let googleMapsPromiseResolve: () => void;
 
 @Component({
     selector: 'weather-app',
@@ -12,24 +14,22 @@ let googleMapsPromiseResolve: () => void;
                <google-map [location]="location"></google-map>
                <app-footer></app-footer>`
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
     public location: IDot;
     public appState: string = 'loading';
-    private static googleMapsPromise: Promise<{}> = new Promise((resolve) => {
-        googleMapsPromiseResolve = resolve;
-    });
+    private changeDetectorRef: ChangeDetectorRef;
 
     constructor(private ref: ChangeDetectorRef) {
-        Promise.all([Location.getCurrentLocation(), AppComponent.googleMapsPromise])
-            .then( ([location]) => {
-                this.location = location;
-                ref.detectChanges();
-            });
+        this.changeDetectorRef = ref;
     };
 
-    public static initMap(): void {
-        googleMapsPromiseResolve();
-    };
+    public ngOnInit(){
+        Location.getCurrentLocation()
+            .then( (location) => {
+                this.location = location;
+                this.changeDetectorRef.detectChanges();
+            });
+    }
 
     public dataLoaded($event: {newState: string}): void {
         this.appState = $event.newState;

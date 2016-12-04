@@ -1,33 +1,13 @@
 {
-  "name": "weather-app",
-  "version": "0.1.0",
-  "main": "app.ts",
+  "name": "weathr-app",
+  "version": "1.0.0",
+  "description": "A webpack starter for Angular",
   "scripts": {
-    "watch": "webpack --watch",
-    "start": "tsc && webpack-dev-server" //localhost:3030
+    "start": "webpack-dev-server --hot --progress",
+    "build": "rimraf dist && webpack --progress --profile --bail"
   },
-  "author": "Luchnikova",
-  "license": "ISC",
-  "devDependencies": {
-    "babel-loader": "^6.2.8",
-    "codelyzer": "^2.0.0-beta.1",
-    "css-loader": "^0.26.0",
-    "extract-text-webpack-plugin": "^1.0.1",
-    "json-loader": "^0.5.4",
-    "raw-loader": "^0.5.1",
-    "style-loader": "^0.13.1",
-    "ts-loader": "^1.2.2",
-    "tslint": "^4.0.2",
-    "tslint-loader": "^3.2.0",
-    "webpack": "^1.13.3",
-    "webpack-split-by-path": "0.1.0-beta.1"
-  },
+  "license": "MIT",
   "dependencies": {
-    "@types/core-js": "^0.9.34",
-    "@types/googlemaps": "^3.25.36",
-    "@types/whatwg-fetch": "0.0.32",
-    "@types/whatwg-streams": "0.0.1",
-    "typescript": "^2.0.10",
     "@angular/common": "~2.2.0",
     "@angular/compiler": "~2.2.0",
     "@angular/core": "~2.2.0",
@@ -36,11 +16,32 @@
     "@angular/platform-browser": "~2.2.0",
     "@angular/platform-browser-dynamic": "~2.2.0",
     "@angular/router": "~3.2.0",
-    "angular-in-memory-web-api": "~0.1.15",
-    "systemjs": "0.19.40",
     "core-js": "^2.4.1",
     "reflect-metadata": "^0.1.8",
     "rxjs": "5.0.0-beta.12",
-    "zone.js": "^0.6.26"
+    "zone.js": "^0.6.25"
+  },
+  "devDependencies": {
+    "@types/core-js": "^0.9.34",
+    "@types/googlemaps": "^3.25.36",
+    "@types/node": "^6.0.45",
+    "@types/whatwg-fetch": "0.0.32",
+    "@types/whatwg-streams": "0.0.1",
+    "angular2-template-loader": "^0.4.0",
+    "awesome-typescript-loader": "^2.2.4",
+    "css-loader": "^0.23.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.8.5",
+    "html-loader": "^0.4.3",
+    "html-webpack-plugin": "^2.15.0",
+    "null-loader": "^0.1.1",
+    "raw-loader": "^0.5.1",
+    "rimraf": "^2.5.2",
+    "style-loader": "^0.13.1",
+    "to-string-loader": "^1.1.5",
+    "typescript": "^2.0.3",
+    "webpack": "^1.13.0",
+    "webpack-dev-server": "^1.14.1",
+    "webpack-merge": "^0.14.0"
   }
 }

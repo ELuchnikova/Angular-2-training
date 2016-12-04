@@ -1,51 +1,54 @@
-var path = require('path');
-var fs = require('fs');
 var webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var helpers = require('./helpers');
 
 module.exports = {
-    context: path.resolve(__dirname, "src"),
-    entry: {
-        main: "./app.ts"
-    },
-    module: {
-        preLoaders: [
-            {
-                test: /\.ts$/,
-                loader: 'tslint'
-            }
-        ],
-        loaders: [
-            {
-                test: /\.css$/,
-                loader: ExtractTextPlugin.extract("style", "css")
-            },
-            {test: /\.html$/, loader: "raw"},
-            {
-                test: /\.(ico|png|eot|woff|woff2|ttf|svg)$/,
-                loader: 'file?name=assets/[name].[hash].[ext]'
-            },
-            {
-                test: /\.js$/,
-                include: [
-                    path.resolve(__dirname, 'src')
-                ],
-                loader: 'babel-loader'
-            },
-            { test: /\.ts?$/, loader: 'ts-loader' }
-        ]
-    },
-    plugins: [
-        new ExtractTextPlugin('[name].css')
-    ],
-    resolve: {
-        extensions: ['', '.webpack.js', '.web.js', '.ts', '.js']
-    },
-    output: {
-        path: __dirname + '/dist',
-        filename: '[name].js',
-        chunkFilename: '[name].js'
-    },
+  entry: {
+    'app': './src/app.ts'
+  },
+
+  resolve: {
+    extensions: ['', '.ts', '.js']
+  },
+
+  module: {
+    loaders: [
+      {
+        test: /\.ts$/,
+        loaders: ['awesome-typescript-loader', 'angular2-template-loader']
+      },
+      {
+        test: /\.html$/,
+        loader: 'html'
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
+        loader: 'file?name=assets/[name].[hash].[ext]'
+      },
+      {
+        test: /\.css$/,
+        exclude: helpers.root('src', 'app'),
+        loaders: [ExtractTextPlugin.extract('style', 'css-loader'), 'to-string-loader', 'css?sourceMap']
+      },
+      {
+        test: /\.css$/,
+        include: helpers.root('src', 'app'),
+        loader: 'raw'
+      }
+    ]
+  },
+
+  plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      name: ['app']
+    }),
+
+    new HtmlWebpackPlugin({
+      template: './index.html'
+    }),
+	new ExtractTextPlugin('[name].css')
+  ],
     devtool: 'inline-source-map',
     devServer: {
         port: 3030,
@@ -56,14 +59,5 @@ module.exports = {
         stats: {
             colors: true
         }
-    },
-    tslint: {
-        emitErrors: true,
-        failOnHint: true
-    },
-    watch: true,
-    watchOptions: {
-        aggregateTimeout: 300
-    },
-    cache: true
+    }
 };

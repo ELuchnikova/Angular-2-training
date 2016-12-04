@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <title>Weather APP</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="./dist/main.css">
+ 
 </head>
 <body>
     <weather-app></weather-app>
 
-    <script src="dist/common.js"></script>
-    <script src="dist/main.js"></script>
+    <script>
+        window.initMap = function()  {};
+    </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5L5Jp2sNnsl7oK0IEWLnXbbSFPZnH_ns&callback=initMap"
             async defer></script>
 </body>

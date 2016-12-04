@@ -6,10 +6,8 @@ import { Component, Input } from '@angular/core';
                     <p *ngIf="state === 'loading'">Loading data...</p>
                     <p *ngIf="state === 'error'">Sorry, some error occurred =(</p>
                 </div>`,
-    styleUrls: ['./src/app/loader/loader.css']
+    styleUrls: ['./loader.css']
 })
 export class LoaderComponent {
     @Input() state: string;
-
-    constructor() {};
 }
