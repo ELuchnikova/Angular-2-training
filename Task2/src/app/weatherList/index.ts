@@ -1,4 +1,4 @@
-import { ListModule } from './list.module';
+import { WeatherListModule } from './weatherList.module';
 
-export * from './list.component';
-export { ListModule };
+export * from './weatherList.component';
+export { WeatherListModule };

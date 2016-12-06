@@ -2,15 +2,6 @@ import 'zone.js';
 import 'reflect-metadata';
 
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { AppModule, AppComponent } from './app/index';
-// import { IWindow } from './interfaces';
+import { AppModule } from './app/index';
 
 platformBrowserDynamic().bootstrapModule(AppModule);
-
-// declare var window: IWindow;
-//
-// function initMap(): void {
-//     AppComponent.initMap();
-// };
-//
-// window.initMap = initMap;
