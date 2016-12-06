@@ -1,4 +1,4 @@
-import {IDot} from './../interfaces';
+import { IDot } from './../../interfaces';
 
 export class Location {
     private static instance: Location;
