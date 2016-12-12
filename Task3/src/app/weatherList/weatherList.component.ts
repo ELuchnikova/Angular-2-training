@@ -5,10 +5,10 @@ import { WeatherListService } from './weather';
 @Component({
     selector: 'weather-list',
     template: `<div class="container-fluid">
-                    <div *ngIf="pages" class="row">
+                    <div *ngIf="list" class="row">
                         <div class="col-sm-10 col-sm-offset-1">
-                        <list-table [list]="pages[currentPage - 1]"></list-table>
-                        <list-pagination [totalCount]="pages?.length" [currentPage]="currentPage"
+                        <list-table [list]="list | slice:(currentPage - 1) * linesCountPerPage : currentPage * linesCountPerPage"></list-table>
+                        <list-pagination [totalCount]="pageCount" [currentPage]="currentPage"
                             (setPage)="setPage($event)"></list-pagination>
                         </div>
                     </div>
@@ -19,8 +19,9 @@ export class WeatherListComponent implements OnInit, OnChanges {
     @Input() location: IDot;
     @Output() gotData = new EventEmitter();
 
-    private readonly linesCountPerPage: number = 10;
-    public pages: Array<IWeatherItem[]> = [];
+    public readonly linesCountPerPage: number = 10;
+    public list: Array<IWeatherItem> = [];
+    public pageCount: number;
     public currentPage: number = 1;
     private weatherService: WeatherListService;
 
@@ -33,7 +34,9 @@ export class WeatherListComponent implements OnInit, OnChanges {
         if (this.location) {
             this.weatherService.requestNearestWeatherData(this.location)
                 .then((data: IWeatherResponse) => {
-                    this.createList(data.list);
+                    // this.createList(data.list);
+                    this.list = data.list;
+                    this.pageCount = Math.ceil(this.list.length / this.linesCountPerPage);
                     this.gotData.emit({
                         newState: 'loaded'
                     });
@@ -44,20 +47,6 @@ export class WeatherListComponent implements OnInit, OnChanges {
                         newState: 'error'
                     });
                 });
-        }
-    }
-
-    private createList(list: Array<IWeatherItem>): void {
-        let pageCount: number = Math.ceil(list.length / this.linesCountPerPage);
-
-        for (let i = 1; i <= pageCount; i++) {
-            // TODO: remove static creation of pages, instead make function to get list by currentPage
-            if (!this.pages) {
-                this.pages = [list.slice((i - 1) * this.linesCountPerPage , i * this.linesCountPerPage)];
-            } else {
-                this.pages.push(list.slice((i - 1) * this.linesCountPerPage , i * this.linesCountPerPage));
-            }
-
         }
     }
 
