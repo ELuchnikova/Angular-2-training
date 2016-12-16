@@ -1,0 +1,31 @@
+<table class="table table-striped ">
+    <thead>
+    <tr>
+        <th>City name</th>
+        <th>Temperature</th>
+        <th>Weather</th>
+        <th>Humidity</th>
+        <th>Pressure</th>
+        <th>Wind speed</th>
+        <th>Clouds</th>
+        <th>Favorite</th>
+        <th>Delete city</th>
+    </tr>
+    </thead>
+    <tbody *ngIf="list">
+        <tr *ngFor="let item of list">
+            <td>{{item.name}}</td>
+            <td>{{item.main.temp_min | sgKelvinToCelsiusPipe | number : '1.1-1'}} - {{item.main.temp_max | sgKelvinToCelsiusPipe | number : '1.1-1'}}°C</td>
+            <td>{{item.weather[0].main}}</td>
+            <td>{{item.main.humidity}}%</td>
+            <td>{{item.main.pressure}} hPa</td>
+            <td>{{item.wind.speed | number : '1.1-1'}}m/s</td>
+            <td>{{item.clouds.all}}%</td>
+            <td>
+                <span *ngIf="item.favorite" class="glyphicon glyphicon-star" aria-hidden="true" (click)="unsetFavorite.emit(item.id)"></span>
+                <span *ngIf="!item.favorite" class="glyphicon glyphicon-star-empty" aria-hidden="true" (click)="setFavorite.emit(item.id)"></span>
+            </td>
+            <td><button [disabled]="item.favorite" (click)="deleteItem.emit(item.id)" class="btn btn-default">Delete</button></td>
+        </tr>
+    </tbody>
+</table>
