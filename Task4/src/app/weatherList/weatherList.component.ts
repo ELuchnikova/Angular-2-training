@@ -30,15 +30,15 @@ export class WeatherListComponent implements OnInit, OnChanges {
     private weatherService: WeatherListService;
     private firstLoad: boolean = false;
 
-    constructor(private ref: ChangeDetectorRef) {
+    constructor(private ref: ChangeDetectorRef) {}
+
+    public ngOnInit() {
         this.ref.detach();
 
         setInterval(() => {
             this.getFullList();
         }, 10000);
-    }
 
-    public ngOnInit() {
         this.weatherService = new WeatherListService();
     }
 
