@@ -1,0 +1,11 @@
+@import '~@angular/material/core/theming/prebuilt/pink-bluegrey.css';
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: inherit !important;
+}
