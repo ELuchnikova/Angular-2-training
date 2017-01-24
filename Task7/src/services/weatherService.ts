@@ -27,7 +27,7 @@ export class WeatherService {
         let nearestCitiesURL = `http://api.openweathermap.org/data/2.5/find?lat=${this.location.lat}&lon=${this.location.lng}&cnt=50&APPID=${WEATHER_API_KEY}`;
 
         return fetch(nearestCitiesURL)
-            .then((response: Response) => response.json())
+            .then((response: Response): Promise<IWeatherResponse> => response.json())
             .catch((err: Error) => {
                 console.log('error');
                 return mock;
@@ -36,6 +36,6 @@ export class WeatherService {
 
     public getWeatherDataByCity(cityName: string): Promise<ICityWeather> {
         return fetch(`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&APPID=${WEATHER_API_KEY}`)
-            .then((response: Response) => response.json());
+            .then((response: Response): Promise<ICityWeather> => response.json());
     }
 }

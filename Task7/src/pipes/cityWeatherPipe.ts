@@ -16,11 +16,11 @@ export class CityWeatherPipe  implements PipeTransform {
         if (!this.cachedData[city]) {
             this.cachedData[city] = 'Loading data';
             fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID=${WEATHER_API_KEY}`)
-                .then((response: Response) => response.json())
-                .then((data: ICityWeather) => {
+                .then((response: Response): Promise<ICityWeather> => response.json())
+                .then((data: ICityWeather): void => {
                     this.cachedData[city] = data;
                 })
-                .catch(err => {
+                .catch((err: Error )=> {
                     console.warn(err);
                     this.cachedData[city] = err;
                 });

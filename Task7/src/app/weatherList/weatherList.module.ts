@@ -11,8 +11,6 @@ import { KelvinToCelsiusPipe } from './../../pipes/kelvinToCelsius';
 import { CitySearchComponent } from './citySearch/citySearch.component';
 import { CityWeatherPipe } from './../../pipes/cityWeatherPipe';
 import { CapitalizePipe } from './../../pipes/capitalizePipe';
-import { TemperatureColor } from './../../directives/temperatureColor';
-import { RotateWind } from './../../directives/rotateWind';
 import { WeatherService } from './../../services/weatherService';
 
 @NgModule({
@@ -30,9 +28,7 @@ import { WeatherService } from './../../services/weatherService';
         KelvinToCelsiusPipe,
         CitySearchComponent,
         CityWeatherPipe,
-        CapitalizePipe,
-        TemperatureColor,
-        RotateWind
+        CapitalizePipe
     ],
     providers: [WeatherService]
 })

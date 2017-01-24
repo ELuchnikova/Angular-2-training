@@ -1,32 +1,18 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { LocationService } from './../../services/geolocation';
-import { LoggerService, DevLoggerService } from './../../services/loggerService';
-
-export function loggerFactory() {
-    return process.env.NODE_ENV === 'development'
-        ? new DevLoggerService()
-        : new LoggerService();
-}
+import { TemperatureColor } from './../../directives/temperatureColor';
+import { RotateWind } from './../../directives/rotateWind';
 
 @NgModule({
     imports: [CommonModule],
-    declarations: [],
-    exports: [CommonModule]
+    declarations: [
+        TemperatureColor,
+        RotateWind
+    ],
+    exports: [
+        CommonModule,
+        TemperatureColor,
+        RotateWind
+    ]
 })
-export class SharedModule {
-    static forRoot(): ModuleWithProviders {
-        return {
-            ngModule: SharedModule,
-            providers: [
-                {
-                    provide: LoggerService,
-                    useFactory: loggerFactory
-
-                },
-                LocationService
-            ]
-        };
-    }
-}
+export class SharedModule {}
