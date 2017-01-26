@@ -1,0 +1,44 @@
+<table class="table">
+    <thead>
+    <tr>
+        <th>City name</th>
+        <th>Temperature</th>
+        <th>Weather</th>
+        <th>Humidity</th>
+        <th>Pressure</th>
+        <th>Wind</th>
+        <th>Clouds</th>
+        <th>Favorite</th>
+        <th>Delete city</th>
+    </tr>
+    </thead>
+    <tbody *ngIf="list">
+        <tr *ngFor="let item of list">
+            <td>{{item.name}}</td>
+            <td class="temp-cell">
+                <div [temperatureColor]="item.main.temp | sgKelvinToCelsiusPipe" class="temp-background"></div>
+                <span class="temp-numbers">{{item.main.temp_min | sgKelvinToCelsiusPipe | number : '1.1-1'}} - {{item.main.temp_max | sgKelvinToCelsiusPipe | number : '1.1-1'}}°C</span>
+            </td>
+            <td>
+                <span [ngSwitch]="item.weather[0].main">
+                    <i *ngSwitchCase="'Snow'" class="fa fa-snowflake-o" aria-hidden="true"></i>
+                    <i *ngSwitchCase="'Clouds'" class="fa fa-cloud" aria-hidden="true"></i>
+                    <i *ngSwitchCase="'Rain'" class="fa fa-tint" aria-hidden="true"></i>
+                    <i *ngSwitchCase="'Mist'" class="fa fa-eye-slash" aria-hidden="true"></i>
+                    <i *ngSwitchCase="'Fog'" class="fa fa-eye-slash" aria-hidden="true"></i>
+                    <i *ngSwitchCase="'Clear'" class="fa fa-sun-o" aria-hidden="true"></i>
+                </span>
+                &nbsp;&nbsp;&nbsp;{{item.weather[0].main}}
+            </td>
+            <td>{{item.main.humidity}}%</td>
+            <td>{{item.main.pressure}} hPa</td>
+            <td><span [rotateWind]="item.wind.deg" class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;{{item.wind.speed | number : '1.1-1'}}m/s</td>
+            <td>{{item.clouds.all}}%</td>
+            <td>
+                <span *ngIf="item.favorite" class="glyphicon glyphicon-star" aria-hidden="true" (click)="unsetFavorite.emit(item.id)"></span>
+                <span *ngIf="!item.favorite" class="glyphicon glyphicon-star-empty" aria-hidden="true" (click)="setFavorite.emit(item.id)"></span>
+            </td>
+            <td><button md-raised-button [disabled]="item.favorite" (click)="deleteItem.emit(item.id)" class="btn btn-default">Delete</button></td>
+        </tr>
+    </tbody>
+</table>
