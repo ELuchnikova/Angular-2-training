@@ -1,0 +1,11 @@
+.footer-toolbar md-toolbar-row {
+    justify-content: space-between;
+    color: white;
+}
+
+.glyphicon-cloud {
+    margin-left: 10px;
+}
+.right {
+    float: right; 
+}
