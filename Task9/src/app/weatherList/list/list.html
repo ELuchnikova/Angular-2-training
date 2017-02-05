@@ -1,0 +1,50 @@
+<div class="customization-container">
+    <i class="fa fa-cog customize-btn" aria-hidden="true" (click)="openCustomization()"></i>
+</div>
+<table class="table" *ngIf="customizationData" [class.light-blue-background]="lightBlueBackground">
+    <thead>
+    <tr>
+        <th *ngIf="customizationData.columnsVisibility.cityName">City name</th>
+        <th *ngIf="customizationData.columnsVisibility.temperature">Temperature</th>
+        <th *ngIf="customizationData.columnsVisibility.weather">Weather</th>
+        <th *ngIf="customizationData.columnsVisibility.humidity">Humidity</th>
+        <th *ngIf="customizationData.columnsVisibility.pressure">Pressure</th>
+        <th *ngIf="customizationData.columnsVisibility.wind">Wind</th>
+        <th *ngIf="customizationData.columnsVisibility.clouds">Clouds</th>
+        <th *ngIf="customizationData.columnsVisibility.favorite">Favorite</th>
+        <th *ngIf="customizationData.columnsVisibility.deleteCity">Delete city</th>
+    </tr>
+    </thead>
+    <tbody *ngIf="list">
+        <tr *ngFor="let item of list">
+            <td *ngIf="customizationData.columnsVisibility.cityName">{{item.name}}</td>
+            <td *ngIf="customizationData.columnsVisibility.temperature && customizationData.tempScale === 'celsius'" class="temp-cell">
+                <div [temperatureColor]="item.main.temp | sgKelvinToCelsiusPipe" class="temp-background"></div>
+                <span class="temp-numbers">{{item.main.temp_min | sgKelvinToCelsiusPipe | number : '1.1-1'}} - {{item.main.temp_max | sgKelvinToCelsiusPipe | number : '1.1-1'}}°C</span>
+            </td>
+            <td *ngIf="customizationData.columnsVisibility.temperature && customizationData.tempScale === 'kelvin'" class="temp-cell">
+                <span class="temp-numbers">{{item.main.temp_min | number : '1.1-1'}} - {{item.main.temp_max | number : '1.1-1'}}°C</span>
+            </td>
+            <td *ngIf="customizationData.columnsVisibility.weather">
+                <span [ngSwitch]="item.weather[0].main">
+                    <i *ngSwitchCase="'Snow'" class="fa fa-snowflake-o" aria-hidden="true"></i>
+                    <i *ngSwitchCase="'Clouds'" class="fa fa-cloud" aria-hidden="true"></i>
+                    <i *ngSwitchCase="'Rain'" class="fa fa-tint" aria-hidden="true"></i>
+                    <i *ngSwitchCase="'Mist'" class="fa fa-eye-slash" aria-hidden="true"></i>
+                    <i *ngSwitchCase="'Fog'" class="fa fa-eye-slash" aria-hidden="true"></i>
+                    <i *ngSwitchCase="'Clear'" class="fa fa-sun-o" aria-hidden="true"></i>
+                </span>
+                &nbsp;&nbsp;&nbsp;{{item.weather[0].main}}
+            </td>
+            <td *ngIf="customizationData.columnsVisibility.humidity">{{item.main.humidity}}%</td>
+            <td *ngIf="customizationData.columnsVisibility.pressure">{{item.main.pressure}} hPa</td>
+            <td *ngIf="customizationData.columnsVisibility.wind"><span [rotateWind]="item.wind.deg" class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;{{item.wind.speed | number : '1.1-1'}}m/s</td>
+            <td *ngIf="customizationData.columnsVisibility.clouds">{{item.clouds.all}}%</td>
+            <td *ngIf="customizationData.columnsVisibility.favorite">
+                <span *ngIf="item.favorite" class="glyphicon glyphicon-star" aria-hidden="true" (click)="unsetFavorite.emit(item.id)"></span>
+                <span *ngIf="!item.favorite" class="glyphicon glyphicon-star-empty" aria-hidden="true" (click)="setFavorite.emit(item.id)"></span>
+            </td>
+            <td *ngIf="customizationData.columnsVisibility.deleteCity"><button md-raised-button [disabled]="item.favorite" (click)="deleteItem.emit(item.id)" class="btn btn-default">Delete</button></td>
+        </tr>
+    </tbody>
+</table>
