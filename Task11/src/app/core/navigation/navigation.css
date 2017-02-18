@@ -1,0 +1,23 @@
+.navbar-inverse .navbar-brand {
+    color: #fff;
+}
+
+.navbar-inverse .glyphicon {
+    margin-right: 10px;
+}
+
+md-button-toggle .md-button-toggle-label {
+    margin-bottom: 0;
+}
+
+.md-button-toggle-checked .md-button-toggle-label-content {
+    background-color: #b0bec5;
+}
+
+md-toolbar md-toolbar-row {
+    justify-content: space-between;
+}
+
+.active-route {
+    background-color: #546e7a;
+}
