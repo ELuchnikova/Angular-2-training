@@ -1,0 +1,30 @@
+.light-blue-background {
+    background-color: #b0bec5;
+}
+
+.temp-cell {
+    position: relative;
+}
+
+.temp-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.7;
+}
+
+.temp-numbers {
+    position: absolute;
+}
+
+.customization-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.customize-btn {
+    cursor: pointer;
+}

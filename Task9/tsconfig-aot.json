@@ -1,0 +1,42 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "es2015",
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "lib": ["es5", "dom"],
+        "noImplicitAny": true,
+        "skipLibCheck": true,
+        "suppressImplicitAnyIndexErrors": true
+    },
+
+    "files": [
+        "src/app/app.module.ts",
+        "src/prodEntry/prod.app.ts"
+    ],
+
+    "typeRoots": [
+        "../node_modules/@types"
+    ],
+
+    "types": [
+        "core-js",
+        "whatwg-fetch",
+        "googlemaps"
+    ],
+
+    "exclude": [
+        "node_modules/*",
+        "dist",
+        "aot"
+    ],
+
+    "compileOnSave": false,
+
+    "angularCompilerOptions": {
+        "genDir": "aot",
+        "skipMetadataEmit" : true
+    }
+}
