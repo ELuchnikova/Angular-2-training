@@ -1,0 +1,39 @@
+<div class="row">
+    <form [formGroup]="formGroup" (submit)="applyChanges(formGroup)">
+
+        <div>
+            <custom-select [colors]="backgroundColors" formControlName="backgroundColor"></custom-select>
+        </div>
+
+
+        <div>
+            <md-input-container>
+                <input mdInput type="number" placeholder="City amount per page" formControlName="cityAmount">
+            </md-input-container>
+            <error-message [errors]="formGroup.controls.cityAmount.errors"></error-message>
+        </div>
+
+        <div>
+            <div>
+                <label>Temperature scale: </label>
+            </div>
+            <md-radio-group class="example-radio-group" formControlName="tempScale">
+                <md-radio-button class="example-radio-button" value="celsius">
+                    Celsius
+                </md-radio-button>
+                <md-radio-button class="example-radio-button" value="kelvin">
+                    Kelvin
+                </md-radio-button>
+            </md-radio-group>
+        </div>
+
+        <fieldset formGroupName="columnsVisibility">
+            <label>Columns visibility: </label>
+            <div *ngFor="let column of formGroup.controls.columnsVisibility.controls | keys">
+            <md-checkbox [checked]="column.value" formControlName="{{column.key}}">{{column.key | sgCapitalizePipe}}</md-checkbox>
+            </div>
+        </fieldset>
+        <error-message [errors]="formGroup.controls.columnsVisibility.errors"></error-message>
+        <button md-raised-button value="Add to table" (click)="applyChanges(formGroup)">Apply</button>
+    </form>
+</div>

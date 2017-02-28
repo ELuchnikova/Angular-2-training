@@ -1,0 +1,38 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "removeComments": false,
+        "noImplicitAny": true,
+        "suppressImplicitAnyIndexErrors": true,
+        "typeRoots": [
+            "../node_modules/@types"
+        ],
+
+        "types": [
+            "core-js",
+            "googlemaps"
+        ],
+
+        "files": [
+            "src/app/app.module.ts",
+            "src/app.ts"
+        ],
+
+        "awesomeTypescriptLoaderOptions": {
+            "forkChecker": true,
+            "useWebpackText": true
+        },
+
+        "exclude": [
+            "node_modules/*",
+            "dist",
+            "src/prod.app.ts",
+            "aot"
+        ]
+    }
+}
