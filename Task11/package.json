@@ -38,7 +38,6 @@
     "@types/core-js": "^0.9.35",
     "@types/googlemaps": "^3.25.36",
     "@types/node": "^6.0.45",
-    "@types/whatwg-fetch": "0.0.32",
     "@types/whatwg-streams": "0.0.1",
     "angular2-router-loader": "^0.3.5",
     "angular2-template-loader": "^0.4.0",

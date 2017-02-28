@@ -23,7 +23,6 @@
 
     "types": [
         "core-js",
-        "whatwg-fetch",
         "googlemaps"
     ],
 
